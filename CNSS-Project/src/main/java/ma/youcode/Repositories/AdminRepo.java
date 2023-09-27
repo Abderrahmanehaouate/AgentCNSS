@@ -24,11 +24,11 @@ public class AdminRepo {
             preparedStatement.setString(2, admin.getPassword());
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                return resultSet.next(); // Returns true if a matching admin record is found
+                return resultSet.next();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Error occurred, return false
+            return false;
         }
     }
 
@@ -40,10 +40,10 @@ public class AdminRepo {
             preparedStatement.setString(2, Password);
 
             int rowsAffected = preparedStatement.executeUpdate();
-            return rowsAffected > 0; // Returns true if the agent is added successfully
+            return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Error occurred while adding the agent
+            return false;
         }
     }
 
@@ -54,10 +54,10 @@ public class AdminRepo {
             preparedStatement.setString(1, Email);
 
             int rowsAffected = preparedStatement.executeUpdate();
-            return rowsAffected > 0; // Returns true if the agent is reactivated successfully
+            return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Error occurred while reactivating the agent
+            return false;
         }
     }
 }

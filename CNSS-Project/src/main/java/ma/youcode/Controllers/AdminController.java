@@ -22,7 +22,7 @@ public class AdminController {
             String username = view.getInput("Enter username: ");
             String password = view.getInput("Enter password: ");
 
-            Admin admin = new Admin(username, password); // Create an Admin object
+            Admin admin = new Admin(username, password);
 
             if (model.isValidAdmin(admin)) {
                 loggedIn = true;

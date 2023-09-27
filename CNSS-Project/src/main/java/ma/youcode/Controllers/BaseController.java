@@ -12,7 +12,7 @@ public class BaseController {
 
     public BaseController() {
         view = new BaseView();
-        connection = Database.getConnection(); // Obtain the database connection
+        connection = Database.getConnection();
     }
 
     public void run() {
@@ -25,12 +25,12 @@ public class BaseController {
         } else if ("agent".equalsIgnoreCase(roleChoice)) {
             agentLogin();
         } else if ("patient".equalsIgnoreCase(roleChoice)) {
-            // Implement patient login logic when needed
+
         } else {
             view.displayMessage("Invalid role. Please try again.");
         }
 
-        // Close the database connection when the session is complete
+
         closeConnection();
     }
 

@@ -24,11 +24,11 @@ public class AgentRepo {
             preparedStatement.setString(2, agent.getPassword());
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                return resultSet.next(); // Returns true if a matching agent record is found
+                return resultSet.next();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Error occurred, return false
+            return false;
         }
     }
 
