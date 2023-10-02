@@ -1,10 +1,14 @@
 package ma.youcode.Database;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
+  
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/cnss";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";

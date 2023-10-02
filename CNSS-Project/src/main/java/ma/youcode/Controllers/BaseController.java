@@ -2,7 +2,9 @@ package ma.youcode.Controllers;
 
 import ma.youcode.Database.Database;
 import ma.youcode.Views.BaseView;
+
 import ma.youcode.Views.Document.DossierView;
+
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,10 +12,12 @@ import java.sql.SQLException;
 public class BaseController {
     public static BaseView view;
     private Connection connection;
+
     DossierView dossierView = new DossierView();
     public BaseController() {
         view = new BaseView();
         connection = Database.getInstance();
+
     }
 
     public void run() {
@@ -26,7 +30,9 @@ public class BaseController {
         } else if ("agent".equalsIgnoreCase(roleChoice)) {
             agentLogin();
         } else if ("patient".equalsIgnoreCase(roleChoice)) {
+
             dossierView.displayDossiers();
+
         } else {
             view.displayMessage("Invalid role. Please try again.");
         }
@@ -49,6 +55,7 @@ public class BaseController {
 
     private void patientLogin(){
     }
+
 
 
 

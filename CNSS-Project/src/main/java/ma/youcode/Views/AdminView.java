@@ -2,6 +2,7 @@ package ma.youcode.Views;
 
 import ma.youcode.Controllers.AdminController;
 
+
 import java.util.Scanner;
 
 import static ma.youcode.Controllers.AdminController.view;
