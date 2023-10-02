@@ -1,6 +1,6 @@
 package ma.youcode.Repositories;
 
-import ma.youcode.Database.Database;
+import ma.youcode.Helpers.Database;
 import ma.youcode.Models.Admin;
 
 import java.sql.Connection;

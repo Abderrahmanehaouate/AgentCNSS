@@ -2,8 +2,6 @@ package ma.youcode.Views;
 
 import java.util.Scanner;
 
-
-
 import static ma.youcode.Controllers.BaseController.view;
 
 public class BaseView {
