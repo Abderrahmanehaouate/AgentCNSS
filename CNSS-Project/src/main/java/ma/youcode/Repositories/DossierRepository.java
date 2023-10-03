@@ -86,4 +86,36 @@ public class DossierRepository {
 
         return dossiers;
     }
+
+    public boolean checkIfPatientHasDossier(Long matriculePatient){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try{
+            String SelectQuery = "SELECT PatientMatricule FROM dossier WHERE PatientMatricule = ?";
+            preparedStatement = connection.prepareStatement(SelectQuery);
+            preparedStatement.setLong(1,matriculePatient);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean checkIfDossierExist(Long dossierCode){
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try{
+            String SelectQuery = "SELECT DossierCode FROM dossier WHERE DossierCode = ?";
+            preparedStatement = connection.prepareStatement(SelectQuery);
+            preparedStatement.setLong(1,dossierCode);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

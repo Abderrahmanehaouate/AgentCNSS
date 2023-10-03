@@ -8,10 +8,10 @@ import java.sql.Connection;
 import java.util.List;
 
 public class DocumentController {
-    private final DocumentRepository documentRepository;
+    private final DocumentRepository repository;
     public DocumentController(){
         Connection connection = Database.getInstance();
-        this.documentRepository = new DocumentRepository(connection);
+        this.repository = new DocumentRepository(connection);
     }
 
     public boolean create(Long dossierCode, float remboursementRate, float price, String type){
@@ -19,7 +19,7 @@ public class DocumentController {
         float returnPrice = calculerReturnPrice(remboursementRate, price);
         Document document = new Document(dossierCode, remboursementRate, returnPrice, type);
 
-        return documentRepository.create(document);
+        return repository.create(document);
     }
 
     public float calculerReturnPrice(float RemboursementRate, float Price) {
@@ -33,18 +33,19 @@ public class DocumentController {
 
     public int checkAndGetMedicamentPrice(Long CodeBareMedicament){
 
-        return documentRepository.checkAndGetMedicamentPrice(CodeBareMedicament);
+        return repository.checkAndGetMedicamentPrice(CodeBareMedicament);
     }
     public float GetDocumentPrice(Long dossierCode){
-        return documentRepository.GetDocumentPrice(dossierCode);
+        return repository.GetDocumentPrice(dossierCode);
     }
 
     public boolean updatePriceOfDocument( Long dossierCode, float NewPrice){
 
-        return documentRepository.updatePriceOfDocument(dossierCode, NewPrice);
+        return repository.updatePriceOfDocument(dossierCode, NewPrice);
     }
 
     public List<Document> displayDocuments(long patientMatricule){
-        return documentRepository.getAllDossierOfPatient(patientMatricule);
+        return repository.getAllDossierOfPatient(patientMatricule);
     }
 }
+

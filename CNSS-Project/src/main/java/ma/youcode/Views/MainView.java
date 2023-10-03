@@ -24,6 +24,7 @@ import static java.lang.System.out;
                             dossierView.createDossier();
                             break;
                         case 2:
+                            documentView.createDocumentToExistanseDossier();
                             break;
                         case 3:
 

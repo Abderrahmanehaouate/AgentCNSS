@@ -1,12 +1,12 @@
 package ma.youcode.Views.Document;
 
 import ma.youcode.Controllers.DocumentController;
+import ma.youcode.Controllers.DossierController;
 import ma.youcode.Controllers.PatientController;
 import ma.youcode.Helpers.Helpers;
 import ma.youcode.Models.Document;
 import ma.youcode.Views.MainView;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,11 +16,13 @@ public class DocumentView {
     Helpers helpers = new Helpers();
     DocumentController documentController = new DocumentController();
     PatientController patientController = new PatientController();
+    DossierController dossierController = new DossierController();
 
     public void shooseType(Long DossierCode){
         while (true) {
             Scanner scanner = new Scanner(System.in);
             try {
+                out.println("\nShoose Type of your maladie : ");
                 out.println("1 -  analyses de laboratoire");
                 out.println("2 -  des radios ou scanner ");
                 out.println("3 -  médicament");
@@ -130,18 +132,105 @@ public class DocumentView {
         }
     }
 
-    public void displayDocuments(){
+    public void createDocumentToExistanseDossier(){
+
         long matriculePatient = helpers.validateIntegerInput("Entrer the value of Patient matricule", "Matricule");
+
         boolean check = patientController.checkMatriculePatientIfExist(matriculePatient);
+        boolean checkIfPatientHasDossier = dossierController.checkIfPatientHasDossier(matriculePatient);
+
         if(!check){
             System.out.println("this matricule isn't exist, Try to insert an exist matricule\n");
+            optionsCreateExistanseDossier();
+        }
+        if (!checkIfPatientHasDossier){
+            System.out.println("this matricule Has no document , try to create a dossier\n");
+            optionsCreateExistanseDossier();
+        }
+
+        Long DossierCode = (long) helpers.validateLongInput("Entrer the value of dossier code : ", "Dossier Code");
+        boolean checkIfDossierExist = dossierController.checkIfDossierExist(DossierCode);
+
+        if(!checkIfDossierExist){
+            System.out.println("this Dossier is not exist , try to create a dossier.\n");
+            optionsCreateExistanseDossier();
+        }
+
+        if(check && checkIfPatientHasDossier && checkIfDossierExist){
+            shooseType(DossierCode);
         }else{
-            out.println("donned");
-            List<Document> documents = documentController.displayDocuments(matriculePatient);
-            displayDocuments(documents);
+            out.println("something wrong");
+            optionsCreateExistanseDossier();
+        }
+
+    }
+
+
+    public void optionsCreateExistanseDossier() {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            out.println("1 - try again");
+            out.println("2 = return to menu");
+            out.println("2 - Exit ");
+            out.print("Choose your option: ");
+
+            int option = scanner.nextInt();
+            switch (option){
+                case 1:
+                    createDocumentToExistanseDossier();
+                    break;
+                case 2:
+                    MainView mainView = new MainView();
+                    mainView.start();
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    out.println("/n Option not found, please select an existing option.");
+            }
+            out.println("\noption not found, please try again\n");
+            optionsCreateExistanseDossier();
         }
     }
 
+    public void subCreateDossier() {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            out.println("1 - Accepter a dossier");
+            out.println("2 - Refuser a dossier");
+            out.println("3 - return to main menu");
+            out.println("4 - Exit ");
+            out.print("Choose your option: ");
+
+            int option = scanner.nextInt();
+            switch (option){
+                case 1:
+                    acceptDocument();
+                    break;
+                case 2:
+                    refuseDocument();
+                    break;
+                case 3:
+                    MainView mainView = new MainView();
+                    mainView.start();
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    out.println("/n Option not found, please select an existing option.");
+            }
+            out.println("\noption not found, please try again\n");
+        }
+    }
+
+    public void acceptDocument(){
+
+    }
+    public void refuseDocument(){
+
+    }
     public void displayDocuments(List<Document> documents) {
         System.out.println("Patient's Documents:");
         System.out.println("====================");
@@ -156,6 +245,4 @@ public class DocumentView {
             System.out.println("----------------------------");
         }
     }
-
-
 }

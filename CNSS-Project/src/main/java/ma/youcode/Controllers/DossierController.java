@@ -25,4 +25,20 @@ public class DossierController {
     public List<Dossier> getAllDossiersForPatient(long patientMatricule) {
         return repository.getAllDossiersByPatientMatricule(patientMatricule);
     }
+
+    public boolean checkIfPatientHasDossier(Long matriculePatient){
+        if(repository.checkIfPatientHasDossier(matriculePatient)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean checkIfDossierExist(Long dossierCode){
+        if(repository.checkIfDossierExist(dossierCode)){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

@@ -25,7 +25,6 @@ public class DossierView {
         }
         dossierController.createDossier(matriculePatient);
         Long DossierCode = dossierController.getDossierCodeByMatriculePatient(matriculePatient);
-        out.println("Shoose Type of your maladie : ");
         documentView.shooseType(DossierCode);
     }
 
